@@ -12,6 +12,7 @@
        77  WS-VAR1       PIC X(4) VALUE '0060'.
        77  WS-VAR2       PIC X(5) VALUE SPACES.
        77  WS-EXAMPLE2   PIC XX.
+       77  WS-EXAMPLE3   PIC XX.
       *////////////////////////////////////////////////////////////-*
        PROCEDURE DIVISION.
       *////////////////////////////////////////////////////////////-*
