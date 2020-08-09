@@ -1,7 +1,7 @@
        IDENTIFICATION DIVISION.
       */////////////////////////////////////////////////////////////////
       */// Carlos Donatucci - DIC 2018
-      */// Interface para EZACIC20
+      */// Interface para EZACIC20.
       */// Recibe parametros: xxxxZYllll por receive
       */// xxxx codigo transaccion
       */// Z   I Initialization
