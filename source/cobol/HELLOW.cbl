@@ -16,9 +16,9 @@
        PROCEDURE DIVISION.
       *////////////////////////////////////////////////////////////-*
        MAIN  SECTION.
-      
-            DISPLAY 'HELLOW Camilo, Julio.'.
+
+            DISPLAY 'HELLOW Prisma'.
             GOBACK.
-      
+
        END-MAIN. EXIT.
       *////////////////////////////////////////////////////////////-*
