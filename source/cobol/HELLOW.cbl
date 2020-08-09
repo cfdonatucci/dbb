@@ -18,7 +18,7 @@
       *////////////////////////////////////////////////////////////-*
        MAIN  SECTION.
 
-            DISPLAY 'HELLOW Prismassssssss'.
+            DISPLAY 'HELLOW Prisma ALLLLLLLL'.
             GOBACK.
 
        END-MAIN. EXIT.
