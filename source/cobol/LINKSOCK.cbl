@@ -48,6 +48,7 @@
              88  P20OBJOK   VALUE 'L' 'C'.
            03  P20LIST  PIC  X(4) VALUE '    '.
            03  P20RET   PIC  X(1).
+           COPY PEPE.
       *
       */////////////////////////////////////////////////////////////
        LINKAGE SECTION.
