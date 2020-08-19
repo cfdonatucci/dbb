@@ -42,9 +42,9 @@ def buildExtraParams='-d'
 def needDeploy = true
 // ===========================================================
 pipeline { 
-  agent { label linuxAgent }
-      environment { WORK_DIR = "${WORKSPACE}/builds/build-${BUILD_NUMBER}" }
-      options { skipDefaultCheckout(true) }
+//  agent { label linuxAgent }
+//      environment { WORK_DIR = "${WORKSPACE}/builds/build-${BUILD_NUMBER}" }
+//      options { skipDefaultCheckout(true) }
 // -------------------------------------------------------------------------
   stages { 
     stage('Init') {
