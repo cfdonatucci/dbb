@@ -25,7 +25,7 @@ def gitCredId = 'briceGithub'
 def gitCred = 'briceGithub'
 def gitOrg = 'brice'
 def gitHost = 'github.ibm.com'
-def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
+//def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
 //
 def srcGitBranch = 'master'
 def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
