@@ -1,0 +1,32 @@
+println "este es el jjenkins file"
+
+pipeline {
+    agent any
+    stages {
+// -------------------------------------------------------------------------        
+		stage('Br14') {
+			steps {
+				script{
+					node( 'ITSO' ) {
+					    echo 'execute BR14'
+					    sh "/usr/lpp/IBM/dbb/bin/groovyz /u/carlos/scripts/iefbr14.groovy"  
+					    
+ 					}
+				}
+		     }
+    	}
+// -------------------------------------------------------------------------
+		stage('Copy') {
+			steps {
+				script{
+					node( 'ITSO' ) {
+					    echo 'execute Iebcopy'
+					    sh "/usr/lpp/IBM/dbb/bin/groovyz /u/carlos/scripts/iebcopy.groovy" 
+ 					}
+				}
+		     }
+    	}
+// -------------------------------------------------------------------------
+
+	}
+}
