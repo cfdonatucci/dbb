@@ -1,6 +1,7 @@
 // --> Simplified jenkinsfile using master branch
 //
 // WORKSPACE es /u/teccfd
+ println "Start pipeline" 
 //
 // ---------------------------Agents labels
 def linuxAgent = 'principal'
@@ -27,7 +28,7 @@ def gitHost = 'github.ibm.com'
 // def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
 //
 def srcGitBranch = 'master'
-def srcGitRepo   = 'http://jira.prismamp.com.ar:8070/bitbucket/scm/dbbpoc/dbb.git'
+def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
 // ----------------------------- Build type
 //  -i: incremental
 //  -f: full
