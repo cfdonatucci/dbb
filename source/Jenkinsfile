@@ -5,7 +5,7 @@
 //
 // ---------------------------Agents labels
 def linuxAgent = 'principal'
-def zosAgent = 'mainframe'
+def zosAgent = 'itso'
 // ---------------------------Verbose
 //def verbose = false
 def buildVerbose = ''
