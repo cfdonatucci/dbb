@@ -1,34 +1,33 @@
 // --> Simplified jenkinsfile using master branch
 //
-// WORKSPACE es /u/carlos
-  println "Build"
+// WORKSPACE es /u/teccfd
 //
 // ---------------------------Agents labels
 def linuxAgent = 'principal'
-def agentLabel = 'itso'
+def zosAgent = 'mainframe'
 // ---------------------------Verbose
 //def verbose = false
 def buildVerbose = ''
 //def buildVerbose = '-v'
 //println "** Verbose in effect"
 // ---------------------------Hosts and ports
-def linuxHost = '172.16.3.249'
-def zosHost = 'wtsc80.cpolab.ibm.com'
+def linuxHost = '172.16.3.249' // Web App
+def zosHost = 'wtsc80.cpolab.ibm.com' // Lab1 IP
 def zosPort = '22'
 // ----------------------------DBB https://172.16.3.249:9080/dbb/
 def dbbUrl = 'https://'+linuxHost+':9080/dbb'  
-def dbbHlq = 'SYSY.DBB'
-def dbbDaemonPort = '8080'
+def dbbHlq = 'CARLOS.DBB'
+def dbbDaemonPort = '8080' //???????????????????????????????
 def dbbGroovyzOpts= ''
 // ---------------------------- Git (GitHub)
 def gitCredId = 'briceGithub'
 def gitCred = 'briceGithub'
 def gitOrg = 'brice'
 def gitHost = 'github.ibm.com'
-//def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
+// def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
 //
 def srcGitBranch = 'master'
-def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
+def srcGitRepo   = 'http://jira.prismamp.com.ar:8070/bitbucket/scm/dbbpoc/dbb.git'
 // ----------------------------- Build type
 //  -i: incremental
 //  -f: full
@@ -42,14 +41,14 @@ def buildExtraParams='-d'
 def needDeploy = true
 // ===========================================================
 pipeline { 
-  agent { label 'itso' }
+  agent { label linuxAgent }
       environment { WORK_DIR = "${WORKSPACE}/builds/build-${BUILD_NUMBER}" }
       options { skipDefaultCheckout(true) }
 // -------------------------------------------------------------------------
   stages { 
     stage('Init') {
      steps {
-      script {env.DBB_HOME = '/usr/lpp/IBM/dbb/'
+      script {env.DBB_HOME = '/var/dbb/'
         echo "Repository: ${srcGitRepo} - branch: ${srcGitBranch} "
         if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST}          
         else {env.ZOS_HOST = zosHost}
@@ -62,7 +61,7 @@ pipeline {
      }}}
 // -------------------------------------------------------------------------
     stage('Git Clone/Refresh') {
-        agent { label agentLabel }
+        agent { label zosAgent }
         steps {
             script {
                 println "** >branch: ${srcGitBranch}"
