@@ -27,7 +27,7 @@ def gitOrg = 'brice'
 def gitHost = 'github.ibm.com'
 // def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
 //
-def srcGitBranch = 'dev-001'
+def srcGitBranch = '*'
 def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
 // ----------------------------- Build type
 //  -i: incremental
