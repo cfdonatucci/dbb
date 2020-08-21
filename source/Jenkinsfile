@@ -29,6 +29,7 @@ def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb.git'
 //
 def srcGitBranch = 'master'
 //def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
+//git@github.com:cfdonatucci/dbb.git
 // ----------------------------- Build type
 //  -i: incremental
 //  -f: full
@@ -69,7 +70,7 @@ pipeline {
                 println "** >WORKSPACE  is ${WORKSPACE}"
                 println "** > Simplified clone **"
 //
-                dir('poc-zAppBuild') {
+                dir('dbb') {
                 checkout([$class: 'GitSCM', branches: [[name: srcGitBranch]], doGenerateSubmoduleConfigurations: false,
                   submoduleCfg: [], userRemoteConfigs: [[url: srcGitRepo]]])
               } } } }
