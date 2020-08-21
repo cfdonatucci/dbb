@@ -21,14 +21,14 @@ def dbbHlq = 'CARLOS.DBB'
 def dbbDaemonPort = '8080' //???????????????????????????????
 def dbbGroovyzOpts= ''
 // ---------------------------- Git (GitHub)
-def gitCredId = 'briceGithub'
-def gitCred = 'briceGithub'
-def gitOrg = 'brice'
-def gitHost = 'github.ibm.com'
-// def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
+def gitHost = 'github.com'
+def gitCredId = 'aa37c2c1-6ce9-4768-8c71-a07b7f049f6d'
+def gitCred = 'aa37c2c1-6ce9-4768-8c71-a07b7f049f6d'
+def gitOrg = 'cfdonatucci'
+def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb.git'
 //
-def srcGitBranch = '*'
-def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
+def srcGitBranch = 'master'
+//def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
 // ----------------------------- Build type
 //  -i: incremental
 //  -f: full
