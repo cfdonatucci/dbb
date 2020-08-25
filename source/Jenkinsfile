@@ -28,8 +28,8 @@ def gitOrg = 'cfdonatucci'
 //def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb.git'
 //
 def srcGitBranch = 'master'
-//def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
-def srcGitRepo   = 'git@github.com:cfdonatucci/dbb.git'
+def srcGitRepo   = 'https://github.com/cfdonatucci/dbb.git'
+//def srcGitRepo   = 'git@github.com:cfdonatucci/dbb.git'
 
 // ----------------------------- Build type
 //  -i: incremental
