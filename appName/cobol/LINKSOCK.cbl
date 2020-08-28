@@ -1,7 +1,7 @@
        IDENTIFICATION DIVISION.
       */////////////////////////////////////////////////////////////////
       */// Carlos Donatucci - DIC 2018
-      */// Interface para EZACIC20.
+      */// Interface para EZACIC20
       */// Recibe parametros: xxxxZYllll por receive
       */// xxxx codigo transaccion
       */// Z   I Initialization
@@ -9,7 +9,7 @@
       *///     D  Deferred termination
       *///     Q  Quiesce the CICS socket interface by querying the PLT
       */// Y   C CICS socket Interface
-      *///     L Listener
+      *///     L Listener.
       */////////////////////////////////////////////////////////////////
        PROGRAM-ID. LINKSOCK.
        ENVIRONMENT DIVISION.
@@ -48,8 +48,7 @@
              88  P20OBJOK   VALUE 'L' 'C'.
            03  P20LIST  PIC  X(4) VALUE '    '.
            03  P20RET   PIC  X(1).
-           COPY PEPE.
-      **
+      *
       */////////////////////////////////////////////////////////////
        LINKAGE SECTION.
       *//////////////////////////////////////////////////////////////
