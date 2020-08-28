@@ -1,4 +1,4 @@
-              IDENTIFICATION DIVISION.
+       IDENTIFICATION DIVISION.
        PROGRAM-ID. INQUTRAN.
       */////////////////////////////////////////////////////////////////
       *  Carlos Donatucci - MAY 2019
