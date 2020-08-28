@@ -1,4 +1,4 @@
-       IDENTIFICATION DIVISION.
+              IDENTIFICATION DIVISION.
        PROGRAM-ID. INQUTRAN.
       */////////////////////////////////////////////////////////////////
       *  Carlos Donatucci - MAY 2019
@@ -11,11 +11,18 @@
       */// Cuando la EIBTRNID=CPLT el programa se rearranca con
       */// el intervalo de la TDQ para evitar conflictos en el inicio
       */// Logica:
-      */// if S up  and E up   -> OK
-      */// If QUE-STFLG is '<'
-      *///   if E dwn and S down -> start all
-      *///   if S up  and E down -> purge S start all
-      *///   if E up  and S down -> purge E start all
+      */// if E up  and S ' '  -> OK    and next cycle
+      */// if E dwn and S ' '  -> start and next cycle
+      */// if S up  and E up   -> OK    and next cycle
+      */// If QUE-STFLG is ' ' just notify any down and next cycle
+      */// If QUE-STFLG is 'P'
+      *///   if O dwn and I down -> do nothing
+      *///   if O up  and I down -> purge O
+      *///   if I up  and O down -> purge I
+      */// If QUE-STFLG is 'S'
+      *///   if I dwn and O down ->         start all
+      *///   if O up  and I down -> purge O start all
+      *///   if I up  and O down -> purge I start all
       */////////////////////////////////////////////////////////////*
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
@@ -70,7 +77,8 @@
            05 QUE-TRANI             PIC X(4).
            05 QUE-TRANO             PIC X(4).
            05 QUE-STFLG             PIC X.
-              88 PURGEABLE       VALUE '<'.
+              88 PURGEABLE       VALUE 'P' 'S'.
+              88 STARTABLE       VALUE 'S'.
            05 FILLER                PIC X(63).
        01  QUE-RECC REDEFINES QUE-REC.
            05 QUE-INT               PIC X(2).
@@ -157,7 +165,9 @@
                  IF PURGEABLE
                     PERFORM PURGE-TRN
                     IF PURGE-OK
-                       PERFORM START-ALL
+                       IF STARTABLE
+                          PERFORM START-ALL
+                       END-IF
                     END-IF
                  END-IF
               END-IF
@@ -168,11 +178,13 @@
                  IF PURGEABLE
                     PERFORM PURGE-TRN
                     IF PURGE-OK
-                       PERFORM START-ALL
+                       IF STARTABLE
+                          PERFORM START-ALL
+                       END-IF
                     END-IF
                  END-IF
               ELSE
-                 IF PURGEABLE
+                 IF STARTABLE
                     PERFORM START-ALL
                  END-IF
               END-IF
