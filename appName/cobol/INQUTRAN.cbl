@@ -1,3 +1,4 @@
+       CBL CICS("SP")
        IDENTIFICATION DIVISION.
        PROGRAM-ID. INQUTRAN.
       */////////////////////////////////////////////////////////////////
