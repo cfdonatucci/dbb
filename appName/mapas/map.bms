@@ -1,1 +1,12 @@
-l
+DFH     DFHMSD TYPE=DSECT,MODE=INOUT,LANG=COBOL,                       C
+               TERM=3270-2,CTRL=FREEKB,TIOAPFX=YES                      
+DFHSNLE DFHMDI SIZE=(24,80),LINE=1,COLUMN=1,TIOAPFX=YES                 
+MUSU    DFHMDF POS=(10,01),LENGTH=8,ATTRB=(FSET,UNPROT)                 
+MPAS    DFHMDF POS=(11,01),LENGTH=8,ATTRB=(UNPROT,DRK)                  
+MLAN    DFHMDF POS=(12,01),LENGTH=1,ATTRB=(FSET,UNPROT)                 
+MFIL1   DFHMDF POS=(13,01),LENGTH=21,ATTRB=(ASKIP,NORM)                 
+NPAS1   DFHMDF POS=(14,01),LENGTH=8,ATTRB=(FSET,UNPROT,DRK)             
+MFIL2   DFHMDF POS=(15,01),LENGTH=21,ATTRB=(ASKIP,NORM)                 
+NPAS2   DFHMDF POS=(16,01),LENGTH=8,ATTRB=(FSET,UNPROT,DRK)             
+        DFHMSD TYPE=FINAL                                               
+        END                                                             l
