@@ -17,7 +17,7 @@ def zosHost = 'wtsc80.cpolab.ibm.com'
 def zosPort = '22'
 // ----------------------------DBB https://172.16.3.249:9080/dbb/
 def dbbUrl = 'https://'+linuxHost+':9080/dbb'  
-def dbbHlq = 'SYSY.DBB'
+def dbbHlq = 'CARLOS.DBB'
 def dbbDaemonPort = '8080'
 def dbbGroovyzOpts= ''
 // ---------------------------- Git (GitHub)
