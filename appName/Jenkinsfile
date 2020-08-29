@@ -1,5 +1,6 @@
+def zosAgent   = 'itso'
 pipeline {
-    agent any
+    agent { label zosAgent }
     stages {
 // -------------------------------------------------------------------------        
 		stage('BR14') {
