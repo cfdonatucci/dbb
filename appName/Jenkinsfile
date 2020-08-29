@@ -41,7 +41,7 @@ def buildExtraParams='-d'
 def needDeploy = true
 // ===========================================================
 pipeline { 
-  agent { label linuxAgent }
+  agent { label zosAgent }
       environment { WORK_DIR = "${WORKSPACE}/builds/build-${BUILD_NUMBER}" }
       options { skipDefaultCheckout(true) }
 // -------------------------------------------------------------------------
