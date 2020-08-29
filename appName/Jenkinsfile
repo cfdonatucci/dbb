@@ -21,11 +21,11 @@ def dbbHlq = 'CARLOS.DBB'
 def dbbDaemonPort = '8080'
 def dbbGroovyzOpts= ''
 // ---------------------------- Git (GitHub)
-def gitCredId = 'cfdonatucci'
-def gitCred = 'cfdonatucci'
-def gitOrg = 'cfdonatucci'
-def gitHost = 'github.ibm.com'
-def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb.git'
+def gitCredId  = 'cfdonatucci'
+def gitCred    = 'cfdonatucci'
+def gitOrg     = 'cfdonatucci'
+def gitHost    = 'github.ibm.com'
+//def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb.git'
 //
 def srcGitBranch = 'master'
 def srcGitRepo   = 'git@github.com:cfdonatucci/dbb.git'
@@ -68,7 +68,7 @@ pipeline {
                 println "** >WORKSPACE  is ${WORKSPACE}"
                 println "** > Simplified clone **"
 //
-                dir('poc-zAppBuild') {
+                dir('dbb-zAppBuild') {
                 checkout([$class: 'GitSCM', branches: [[name: srcGitBranch]], doGenerateSubmoduleConfigurations: false,
                   submoduleCfg: [], userRemoteConfigs: [[url: srcGitRepo]]])
               } } } }
@@ -88,9 +88,9 @@ pipeline {
          							}
          						}
 						
-//sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/poc-zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} -a MortgageApplication --sourceDir ${WORKSPACE}/dbb-zappbuild-1/samples  --workDir ${WORKSPACE}/builds/build-${BUILD_NUMBER}  --hlq ${dbbHlq}.MORTGAGE --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
+//sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/dbb-zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} -a MortgageApplication --sourceDir ${WORKSPACE}/dbb-zappbuild-1/samples  --workDir ${WORKSPACE}/builds/build-${BUILD_NUMBER}  --hlq ${dbbHlq}.MORTGAGE --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
 
-  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/poc-zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} -a source --w ${WORKSPACE} --hlq ${dbbHlq}.STG $buildType $buildVerbose $buildExtraParams "
+  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/dbb-zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} -a source --w ${WORKSPACE} --hlq ${dbbHlq}.STG $buildType $buildVerbose $buildExtraParams "
 
 def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
 
