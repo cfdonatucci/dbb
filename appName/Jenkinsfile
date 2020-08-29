@@ -1,20 +1,19 @@
 // --> Simplified jenkinsfile using master branch
 //
-// WORKSPACE es /u/teccfd ..
+// WORKSPACE es /u/carlos ..
 //
     println "** IF First build change to full build"
-    println "** IF using VPN the gitHost must be physical IP"
 // ---------------------------Agents labels
 def linuxAgent = 'principal'
-def agentLabel = 'mainframe'
+def zosAgent   = 'itso'
 // ---------------------------Verbose
 //def verbose = false
 def buildVerbose = ''
 //def buildVerbose = '-v'
 //println "** Verbose in effect"
 // ---------------------------Hosts and ports
-def linuxHost = '172.16.3.249'
-def zosHost = '192.168.211.15'
+def linuxHost = ''
+def zosHost = 'wtsc80.cpolab.ibm.com'
 def zosPort = '22'
 // ----------------------------DBB https://172.16.3.249:9080/dbb/
 def dbbUrl = 'https://'+linuxHost+':9080/dbb'  
@@ -22,19 +21,18 @@ def dbbHlq = 'SYSY.DBB'
 def dbbDaemonPort = '8080'
 def dbbGroovyzOpts= ''
 // ---------------------------- Git (GitHub)
-def gitCredId = 'briceGithub'
-def gitCred = 'briceGithub'
-def gitOrg = 'brice'
+def gitCredId = 'cfdonatucci'
+def gitCred = 'cfdonatucci'
+def gitOrg = 'cfdonatucci'
 def gitHost = 'github.ibm.com'
-def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
+def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb.git'
 //
 def srcGitBranch = 'master'
-def srcGitRepo   = 'http://jira.prismamp.com.ar:8070/bitbucket/scm/dbbpoc/dbb.git'
+def srcGitRepo   = 'git@github.com:cfdonatucci/dbb.git'
 // ----------------------------- Build type
 //  -i: incremental
 //  -f: full
 //  -c: only changed source
-//def buildType='-i'
 def buildType='-i'
 // ----------------------------  Build extra args
 //  -d: COBOL debug options
@@ -63,7 +61,7 @@ pipeline {
      }}}
 // -------------------------------------------------------------------------
     stage('Git Clone/Refresh') {
-        agent { label agentLabel }
+        agent { label zosAgent }
         steps {
             script {
                 println "** >branch: ${srcGitBranch}"
@@ -78,7 +76,7 @@ pipeline {
 		stage('DBB Build') {
 			steps {
 				script{
-					node( agentLabel ) {
+					node( zosAgent ) {
 						if ( dbbDaemonPort != null ) {
          		def r = sh script: "netstat | grep ${dbbDaemonPort}", returnStatus: true
          		if ( r == 0 ) {
@@ -110,7 +108,7 @@ def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
 //      
 			post {
 				always {
-					node( agentLabel ) {
+					node( zosAgent ) {
 						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}") {
 							archiveArtifacts allowEmptyArchive: true,
 											artifacts: '*.log,*.json,*.html',
