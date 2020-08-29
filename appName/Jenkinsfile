@@ -1,0 +1,126 @@
+// --> Simplified jenkinsfile using master branch
+//
+// WORKSPACE es /u/teccfd ..
+//
+    println "** IF First build change to full build"
+    println "** IF using VPN the gitHost must be physical IP"
+// ---------------------------Agents labels
+def linuxAgent = 'principal'
+def agentLabel = 'mainframe'
+// ---------------------------Verbose
+//def verbose = false
+def buildVerbose = ''
+//def buildVerbose = '-v'
+//println "** Verbose in effect"
+// ---------------------------Hosts and ports
+def linuxHost = '172.16.3.249'
+def zosHost = '192.168.211.15'
+def zosPort = '22'
+// ----------------------------DBB https://172.16.3.249:9080/dbb/
+def dbbUrl = 'https://'+linuxHost+':9080/dbb'  
+def dbbHlq = 'SYSY.DBB'
+def dbbDaemonPort = '8080'
+def dbbGroovyzOpts= ''
+// ---------------------------- Git (GitHub)
+def gitCredId = 'briceGithub'
+def gitCred = 'briceGithub'
+def gitOrg = 'brice'
+def gitHost = 'github.ibm.com'
+def srcGitRepo =     'git@'+gitHost+':'+gitOrg+'/dbb-zappbuild.git'
+//
+def srcGitBranch = 'master'
+def srcGitRepo   = 'http://jira.prismamp.com.ar:8070/bitbucket/scm/dbbpoc/dbb.git'
+// ----------------------------- Build type
+//  -i: incremental
+//  -f: full
+//  -c: only changed source
+//def buildType='-i'
+def buildType='-i'
+// ----------------------------  Build extra args
+//  -d: COBOL debug options
+def buildExtraParams='-d'
+// --------------------------- Deploy only in case of source code modifications
+def needDeploy = true
+// ===========================================================
+pipeline { 
+  agent { label linuxAgent }
+      environment { WORK_DIR = "${WORKSPACE}/builds/build-${BUILD_NUMBER}" }
+      options { skipDefaultCheckout(true) }
+// -------------------------------------------------------------------------
+  stages { 
+    stage('Init') {
+     steps {
+      script {env.DBB_HOME = '/var/dbb/'
+       	echo "Repository: ${srcGitRepo} - branch: ${srcGitBranch} "
+      	if ( env.ZOS_HOST ) {zosHost = env.ZOS_HOST} 					
+      	else {env.ZOS_HOST = zosHost}
+      	if ( env.ZOS_PORT ) {zosPort = env.ZOS_PORT} 						
+      	else {env.ZOS_PORT = zosPort} 				
+      	if ( env.BRANCH_NAME != null ) {srcGitBranch = env.BRANCH_NAME; }
+              if ( env.DEBUG_PIPELINE && env.DEBUG_PIPELINE == 'true' )     	
+              {verbose = true  buildVerbose = '-v'
+      	echo sh(script: 'env|sort', returnStdout: true)}
+     }}}
+// -------------------------------------------------------------------------
+    stage('Git Clone/Refresh') {
+        agent { label agentLabel }
+        steps {
+            script {
+                println "** >branch: ${srcGitBranch}"
+                println "** >WORKSPACE  is ${WORKSPACE}"
+                println "** > Simplified clone **"
+//
+                dir('poc-zAppBuild') {
+                checkout([$class: 'GitSCM', branches: [[name: srcGitBranch]], doGenerateSubmoduleConfigurations: false,
+                  submoduleCfg: [], userRemoteConfigs: [[url: srcGitRepo]]])
+              } } } }
+// -------------------------------------------------------------------------
+		stage('DBB Build') {
+			steps {
+				script{
+					node( agentLabel ) {
+						if ( dbbDaemonPort != null ) {
+         		def r = sh script: "netstat | grep ${dbbDaemonPort}", returnStatus: true
+         		if ( r == 0 ) {
+         				println "DBB Daemon is running.."
+         				dbbGroovyzOpts = "-DBB_DAEMON_PORT ${dbbDaemonPort} -DBB_DAEMON_HOST 127.0.0.1"
+         			      }
+         		else {
+         				println "WARNING: DBB Daemon not running build will be longer.."
+         							}
+         						}
+						
+//sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/poc-zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} -a MortgageApplication --sourceDir ${WORKSPACE}/dbb-zappbuild-1/samples  --workDir ${WORKSPACE}/builds/build-${BUILD_NUMBER}  --hlq ${dbbHlq}.MORTGAGE --url $dbbUrl -pw ADMIN $buildType  $buildVerbose $buildExtraParams "
+
+  sh "$DBB_HOME/bin/groovyz ${WORKSPACE}/poc-zAppBuild/build.groovy --logEncoding UTF-8 -w ${WORKSPACE} -a source --w ${WORKSPACE} --hlq ${dbbHlq}.STG $buildType $buildVerbose $buildExtraParams "
+
+def files = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList.txt")
+
+// Do not deploy if nothing in the build list
+						needDeploy = files.length > 0 && files[0].length > 0
+						if (needDeploy) {
+						   sh "iconv -f ISO8859-1 -t IBM-1047 ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList.txt > ${WORKSPACE}/BUILD-${BUILD_NUMBER}/buildList-1047.txt"
+			        		}
+						def files1 = findFiles(glob: "**BUILD-${BUILD_NUMBER}/buildList-1047.txt")
+			        		needTest = files1.length > 0 && files1[0].length > 0
+						
+ 					}
+				}
+			}
+//      
+			post {
+				always {
+					node( agentLabel ) {
+						dir("${WORKSPACE}/BUILD-${BUILD_NUMBER}") {
+							archiveArtifacts allowEmptyArchive: true,
+											artifacts: '*.log,*.json,*.html',
+											excludes: '*clist',
+											onlyIfSuccessful: false
+						}
+					}
+				}
+			}
+		}
+//-------------------------------------------------------------
+  }//pipeline
+}//stages
