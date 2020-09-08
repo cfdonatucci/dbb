@@ -17,7 +17,8 @@
       *////////////////////////////////////////////////////////////-*
        MAIN  SECTION.
 
-            DISPLAY 'HELLOW Juniors!!!!'.
+            DISPLAY 'HELLOW Boquita!!!!'.
+
             GOBACK.
 
        END-MAIN. EXIT.
