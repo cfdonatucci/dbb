@@ -17,7 +17,7 @@
       *////////////////////////////////////////////////////////////-*
        MAIN  SECTION.
 
-            DISPLAY 'HELLOW Prisma!!!!'.
+            DISPLAY 'HELLOW Juniors!!!!'.
             GOBACK.
 
        END-MAIN. EXIT.
