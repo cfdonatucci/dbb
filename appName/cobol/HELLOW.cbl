@@ -17,7 +17,7 @@
       *////////////////////////////////////////////////////////////-*
        MAIN  SECTION.
 
-            DISPLAY 'HELLOW Boquita!!!!'.
+            DISPLAY 'HELLOW Prisma!!!!'.
 
             GOBACK.
 
