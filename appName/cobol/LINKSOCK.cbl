@@ -4,7 +4,7 @@
       *  (C) COPYRIGHT IBM CORP. 2020 ALL RIGHTS RESERVED              *
       *  US GOVERNMENT USERS RESTRICTED RIGHTS - USE, DUPLICATION OR   *
       *  DISCLOSURE RESTRICTED BY GSA ADP SCHEDULE CONTRACT WITH       *
-      *  IBM CORP                                                      *
+      *  IBM CORP.                                                     *
       */////////////////////////////////////////////////////////////////
       */// Carlos Donatucci - SET 2020
       */// EZACIC20 Interface
