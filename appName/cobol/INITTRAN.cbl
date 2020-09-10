@@ -10,7 +10,7 @@
       */// Cierra la TD al final del proceso
       */// Un * en la columna uno es un comentario
       */// Un + en la columna uno resetea el parametro itime
-      */// **** en la region significa TODAS.
+      */// **** en la region significa TODAS..
       */////////////////////////////////////////////////////////////////
        ENVIRONMENT DIVISION.
        CONFIGURATION SECTION.
