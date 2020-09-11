@@ -23,6 +23,7 @@
        77  WTIME         PIC S9(15) COMP-3.
        77  WLEN          PIC 9(4)   COMP VALUE 180.
        77  WLEN2         PIC 9(4)   COMP VALUE 180.
+       77  WLEN3         PIC 9(4)   COMP VALUE 180.
        01  MENSAJE-LONG  PIC 9(4)   COMP VALUE 100.
        01  LOGAREA.
            02   FILLER PIC X(10) VALUE 'EDUFILAP :'.
