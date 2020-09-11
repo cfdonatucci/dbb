@@ -16,7 +16,7 @@
       *///     Q  Quiesce the CICS socket interface by querying the PLT
       */// Y   C CICS socket Interface
       *///     L Listener
-      *///       If L is set the listener trn code must be informed
+      *///       If L is set the listener trn code must be informed.
       */////////////////////////////////////////////////////////////////
        PROGRAM-ID. LINKSOCK.
        ENVIRONMENT DIVISION.
