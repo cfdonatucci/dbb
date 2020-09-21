@@ -23,7 +23,7 @@ def gitCred    = 'cfdonatucci'
 def gitOrg     = 'cfdonatucci'
 def gitHost    = 'github.ibm.com'
 def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb.git'
-def srcGitBranch = 'master'
+def srcGitBranch = '*dev*'
 //def srcGitRepo   = 'git@github.com:cfdonatucci/dbb.git'
 // ----------------------------- Build type
 //  -i: incremental
