@@ -1,4 +1,4 @@
-def zosAgent   = 'itso'
+def zosAgent   = 'zPDT'
 pipeline {
     agent { label zosAgent }
     stages {
@@ -8,7 +8,7 @@ pipeline {
 				script{
 					node( 'mainframe' ) {
 					    echo 'execute BR14'
-					    sh "/var/dbb/bin/groovyz /u/teccfd/br14.groovy"  
+					    sh "/var/dbb/bin/groovyz /u/adcdmst/scripts/iefbr14.groovy"  
 					    
  					}
 				}
@@ -20,7 +20,7 @@ pipeline {
 				script{
 					node( 'mainframe' ) {
 					    echo 'execute Iebcopy'
-					    sh "/var/dbb/bin/groovyz /u/teccfd/iebcopy.groovy" 
+					    sh "/var/dbb/bin/groovyz /u/adcdmst/scripts/iebcopy.groovy" 
  					}
 				}
 		     }
