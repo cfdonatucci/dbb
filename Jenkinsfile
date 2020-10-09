@@ -1,27 +1,26 @@
 // --> Simplified jenkinsfile using master branch
 //
-// WORKSPACE es /u/carlos ..
 //
 println "** Pipeline script embedded"
 // ---------------------------Agents labels
 def linuxAgent = 'principal'
-def zosAgent   = 'itso'
+def zosAgent   = 'zPDT'
 // ---------------------------Verbose
 def buildVerbose = 'false'
 // ---------------------------Hosts and ports
 def linuxHost = ''
-def zosHost = 'wtsc80.cpolab.ibm.com'
+def zosHost = '192.168.1.41'
 def zosPort = '22'
 // ----------------------------DBB https
-def dbbUrl = 'https://'+linuxHost+':9080/dbb'  
-def dbbHlq = 'CARLOS.DBB'
+def dbbUrl = 'https://'+linuxHost+':9080/dbb'
+def dbbHlq = 'MVS.DBB'
 def dbbDaemonPort = ''
 def dbbGroovyzOpts= ''
 // ---------------------------- Git (GitHub)
 def gitCredId  = 'cfdonatucci'
 def gitCred    = 'cfdonatucci'
 def gitOrg     = 'cfdonatucci'
-def gitHost    = 'github.ibm.com'
+def gitHost    = 'github.com'
 def srcGitRepo = 'git@'+gitHost+':'+gitOrg+'/dbb.git'
 def srcGitBranch = '*dev*'
 //def srcGitRepo   = 'git@github.com:cfdonatucci/dbb.git'
@@ -33,12 +32,12 @@ def buildType='-f'
 //  -d: COBOL debug options
 def buildExtraParams='-d'
 // ===========================================================
-pipeline { 
+pipeline {
   agent { label zosAgent }
       environment { WORK_DIR = "${WORKSPACE}/builds/build-${BUILD_NUMBER}" }
       options { skipDefaultCheckout(true) }
 // -------------------------------------------------------------------------
-  stages { 
+  stages {
     stage('Init') {
      steps {
       script {
@@ -66,7 +65,7 @@ pipeline {
 				script{
 					node( zosAgent ) {
 						
-sh "$DBB_HOME/bin/groovyz /u/carlos/dbb-zAppBuild/build.groovy $buildType -w ${WORKSPACE} -o ${WORKSPACE} -a dbb-zAppBuild/appName -h ${dbbHlq}.STG "
+sh "$DBB_HOME/bin/groovyz /u/adcdmst/dbb-zAppBuild/build.groovy $buildType -w ${WORKSPACE} -o ${WORKSPACE} -a dbb-zAppBuild/appName -h ${dbbHlq}.STG "
 
 	
  					}
