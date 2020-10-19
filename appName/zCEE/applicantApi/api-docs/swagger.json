@@ -1,0 +1,276 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "1.0.0",
+    "title" : "applicantApi"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/applicant",
+  "schemes" : [ "https", "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/new/app" : {
+      "post" : {
+        "tags" : [ "applicantApi" ],
+        "operationId" : "postApplicantRest",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "add",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 20
+        }, {
+          "name" : "phone",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 8
+        }, {
+          "name" : "name",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 20
+        }, {
+          "name" : "cash",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 8
+        }, {
+          "name" : "numb",
+          "in" : "query",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 6
+        }, {
+          "in" : "body",
+          "name" : "postApplicantRest_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/postApplicantRest_request"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/postApplicantRest_response_200"
+            }
+          }
+        }
+      }
+    },
+    "/{number}" : {
+      "get" : {
+        "tags" : [ "applicantApi" ],
+        "operationId" : "getApplicantRest",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "number",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 6
+        }, {
+          "in" : "body",
+          "name" : "getApplicantRest_request",
+          "description" : "request body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/getApplicantRest_request"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/getApplicantRest_response_200"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "applicantApi" ],
+        "operationId" : "deleteApplicantRest",
+        "parameters" : [ {
+          "name" : "Authorization",
+          "in" : "header",
+          "required" : false,
+          "type" : "string"
+        }, {
+          "name" : "number",
+          "in" : "path",
+          "required" : true,
+          "type" : "string",
+          "maxLength" : 6
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "$ref" : "#/definitions/deleteApplicantRest_response_200"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "getApplicantRest_request" : {
+      "type" : "object",
+      "properties" : {
+        "DFHCOMMAREA" : {
+          "type" : "object",
+          "properties" : {
+            "COM_OP" : {
+              "type" : "string",
+              "maxLength" : 1,
+              "default" : "I"
+            }
+          }
+        }
+      }
+    },
+    "getApplicantRest_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "DFHCOMMAREA" : {
+          "type" : "object",
+          "properties" : {
+            "COM_OP" : {
+              "type" : "string",
+              "maxLength" : 1
+            },
+            "COM_NUMB" : {
+              "type" : "string",
+              "maxLength" : 6
+            },
+            "COM_NAME" : {
+              "type" : "string",
+              "maxLength" : 20
+            },
+            "COM_ADDRX" : {
+              "type" : "string",
+              "maxLength" : 20
+            },
+            "COM_PHONE" : {
+              "type" : "string",
+              "maxLength" : 8
+            },
+            "COM_AMOUNT" : {
+              "type" : "string",
+              "maxLength" : 8
+            },
+            "COM_HORA" : {
+              "type" : "string",
+              "maxLength" : 8
+            }
+          }
+        }
+      }
+    },
+    "deleteApplicantRest_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "DFHCOMMAREA" : {
+          "type" : "object",
+          "properties" : {
+            "COM_OP" : {
+              "type" : "string",
+              "maxLength" : 1
+            },
+            "COM_NUMB" : {
+              "type" : "string",
+              "maxLength" : 6
+            },
+            "COM_NAME" : {
+              "type" : "string",
+              "maxLength" : 20
+            },
+            "COM_ADDRX" : {
+              "type" : "string",
+              "maxLength" : 20
+            },
+            "COM_PHONE" : {
+              "type" : "string",
+              "maxLength" : 8
+            },
+            "COM_AMOUNT" : {
+              "type" : "string",
+              "maxLength" : 8
+            },
+            "COM_HORA" : {
+              "type" : "string",
+              "maxLength" : 8
+            }
+          }
+        }
+      }
+    },
+    "postApplicantRest_request" : {
+      "type" : "object",
+      "properties" : {
+        "DFHCOMMAREA" : {
+          "type" : "object",
+          "properties" : {
+            "COM_HORA" : {
+              "type" : "string",
+              "maxLength" : 8
+            }
+          }
+        }
+      }
+    },
+    "postApplicantRest_response_200" : {
+      "type" : "object",
+      "properties" : {
+        "DFHCOMMAREA" : {
+          "type" : "object",
+          "properties" : {
+            "COM_OP" : {
+              "type" : "string",
+              "maxLength" : 1
+            },
+            "COM_NUMB" : {
+              "type" : "string",
+              "maxLength" : 6
+            },
+            "COM_NAME" : {
+              "type" : "string",
+              "maxLength" : 20
+            },
+            "COM_ADDRX" : {
+              "type" : "string",
+              "maxLength" : 20
+            },
+            "COM_PHONE" : {
+              "type" : "string",
+              "maxLength" : 8
+            },
+            "COM_AMOUNT" : {
+              "type" : "string",
+              "maxLength" : 8
+            },
+            "COM_HORA" : {
+              "type" : "string",
+              "maxLength" : 8
+            }
+          }
+        }
+      }
+    }
+  }
+}

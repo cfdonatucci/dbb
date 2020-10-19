@@ -1,0 +1,34 @@
+{
+  "type" : "object",
+  "properties" : {
+    "DFHCOMMAREA" : {
+      "type" : "object",
+      "properties" : {
+        "COM_NUMB" : {
+          "maxLength" : 6,
+          "type" : "string"
+        },
+        "COM_NAME" : {
+          "maxLength" : 20,
+          "type" : "string"
+        },
+        "COM_ADDRX" : {
+          "maxLength" : 20,
+          "type" : "string"
+        },
+        "COM_PHONE" : {
+          "maxLength" : 8,
+          "type" : "string"
+        },
+        "COM_AMOUNT" : {
+          "maxLength" : 8,
+          "type" : "string"
+        },
+        "COM_HORA" : {
+          "maxLength" : 8,
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

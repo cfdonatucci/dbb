@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<zosConnectApi xmlns="http://www.ibm.com/zosConnect/2.0/zosConnectApi" id="applicantApi">
+    <apiSpec title="applicantApi" basePath="/applicant" description="" version="1.0.0">
+        <path relativePath="/{number}">
+            <method type="GET" zosConnectServiceRef="applicantRest" httpXformFile="api/{number}/GET/mapping.xml" operationId="getApplicantRest"/>
+            <method type="DELETE" zosConnectServiceRef="applicantRest" httpXformFile="api/{number}/DELETE/mapping.xml" operationId="deleteApplicantRest"/>
+        </path>
+        <path relativePath="/new/app?numb&amp;name&amp;add&amp;cash&amp;phone">
+            <method type="POST" zosConnectServiceRef="applicantRest" httpXformFile="api/new/app/POST/mapping.xml" operationId="postApplicantRest"/>
+        </path>
+        <apiDoc docType="SWAGGER">api-docs/swagger.json</apiDoc>
+    </apiSpec>
+</zosConnectApi>
