@@ -11,6 +11,7 @@
        77  CURRENT-TIME  PIC 9(8).
        77  WS-VAR1       PIC X(4) VALUE '0060'.
        77  WS-VAR2       PIC X(5) VALUE SPACES.
+       77  WS-VAR3       PIC X(5) VALUE SPACES.
        77  WS-EXAMPLE    PIC XX.
       *////////////////////////////////////////////////////////////-*
        PROCEDURE DIVISION.
