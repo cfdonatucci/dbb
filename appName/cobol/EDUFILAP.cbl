@@ -7,8 +7,8 @@
       *  IBM CORP.                                                     *
       *----------------------------------------------------------------*
       *-- THIS PROGRAM RECEIVES A KEY VALUE AND RETURNS THE RELATED
-      *-- RECORD. COMMAREA MAPPED BY EDUFILAC.
-      *-- AUTHOR CARLOS DONATUCCI...
+      *-- RECORD. COMMAREA MAPPED BY EDUFILAC
+      *-- AUTHOR CARLOS DONATUCCI
       *----------------------------------------------------------------*
        IDENTIFICATION DIVISION.
        PROGRAM-ID. EDUFILAP.
