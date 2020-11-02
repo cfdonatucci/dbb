@@ -25,6 +25,7 @@
       */////////////////////////////////////////////////////////////////
        77  FILLER                  PIC X(14) VALUE 'INICIO WORKING'.
        77  I                       PIC 9(3).
+       77  J                       PIC 9(3).
        77  ITIME                   PIC S9(8) COMP VALUE +5.
        77  UTIME                   PIC S9(8) COMP VALUE +0.
        77  PTIME                   PIC S9(8) COMP VALUE +0.
