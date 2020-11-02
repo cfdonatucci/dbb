@@ -3,6 +3,6 @@
        IDENTIFICATION DIVISION.
        PROGRAM-ID. HELLO.
        PROCEDURE DIVISION.
-           DISPLAY 'Hola  world Dan bitbucket'.
+           DISPLAY 'Hola  ejemplo'.
            STOP RUN.
       */////////////////////////////////////////////
