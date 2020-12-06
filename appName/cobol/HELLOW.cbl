@@ -14,6 +14,7 @@
        77  WS-VAR3       PIC X(5) VALUE SPACES.
        77  WS-VAR4       PIC X(5) VALUE SPACES.
        77  WS-EXAMPLE    PIC XX.
+           COPY PEPE.
       *////////////////////////////////////////////////////////////-*
        PROCEDURE DIVISION.
       *////////////////////////////////////////////////////////////-*
